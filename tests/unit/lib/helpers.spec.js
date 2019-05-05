@@ -1,7 +1,7 @@
 // @see: https://github.com/vuejs/vuex/blob/dev/test/unit/helpers.spec.js
 
-import ContextStore from '../../../lib/store'
-import { resolveNamespace } from '../../../lib/helpers'
+import ContextStore from '@/store'
+import { resolveNamespace } from '@/helpers'
 
 import Vue from 'vue'
 import { expect } from 'chai'
