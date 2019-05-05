@@ -1,8 +1,9 @@
 // @see: https://github.com/vuejs/vuex/blob/dev/test/unit/helpers.spec.js
 
-import Vue from 'vue'
 import ContextStore from '../../../lib/store'
 import { resolveNamespace } from '../../../lib/helpers'
+
+import Vue from 'vue'
 import { expect } from 'chai'
 
 describe('helpers', () => {
@@ -68,7 +69,7 @@ describe('helpers', () => {
 
       expect(vm.selected).to.equal(4)
 
-      // store.unregisterModule('foo')
+      store.unregisterModule('foo')
     })
   })
 
