@@ -9,15 +9,10 @@ export default function (Vue) {
   Vue.mixin({ beforeCreate: init })
 
   function init () {
-    // const options = this.$options
-    // const { context } = options
     const { context } = this.$options
-
-    // this.$entityContext = typeof context === 'function' ? context(this) : context
 
     if (context) {
       if (context instanceof Function) {
-        // context.bind(this)(this)
         // TODO: Try to avoid the need for this by deferring invocation of helper methods
         // @see: https://github.com/vuejs/vuex/blob/dev/src/helpers.js#L10
         // @see: https://github.com/vuejs/vuex/blob/dev/src/helpers.js#L117
@@ -29,6 +24,7 @@ export default function (Vue) {
           mapGetters: mapGetters.bind(this)
         })
 
+        // FIXME: Merge with each individual $option instead shallow override
         Object.assign(this.$options, options)
       } else {
         throw Error('context must be a function')
