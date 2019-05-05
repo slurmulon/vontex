@@ -1,38 +1,74 @@
 // @see: https://github.com/vuejs/vuex/blob/dev/test/unit/helpers.spec.js
 
 import Vue from 'vue'
-import Vuex from 'vuex'
 import ContextStore from '../../../lib/store'
 import { resolveNamespace } from '../../../lib/helpers'
 import { expect } from 'chai'
 
-Vue.use(Vuex)
-
 describe('helpers', () => {
   describe('mapState', () => {
-    const store = new ContextStore({
-      namespace: 'foo',
-      state: {
-        all: [
-          { id: 1, name: 'a' },
-          { id: 2, name: 'b' }
-        ],
-
-        selected: 1
-      }
-    })
-
-    const vm = new Vue({
-      store,
-      context ({ mapState }) {
-        return {
-          computed: mapState('foo', ['selected'])
-        }
-      }
-    })
-
     it('still works as a native Vuex store', () => {
+      const store = new ContextStore({
+        namespace: 'foo',
+        state: {
+          all: [
+            { id: 1, name: 'a' },
+            { id: 2, name: 'b' }
+          ],
+
+          selected: 1
+        }
+      })
+
+      // TODO
+
+      const vm = new Vue({
+        store,
+        context: ({ mapState }) => ({
+          computed: mapState('foo', ['selected'])
+        })
+      })
+
       expect(vm.selected).to.equal(1)
+
+      store.unregisterModule('foo')
+    })
+
+    it('works with nested contextual entities', () => {
+      const store = new ContextStore({
+        namespace: 'foo',
+        state: {
+          all: [
+            { id: 1, name: 'a' },
+            { id: 2, name: 'b' }
+          ],
+
+          selected: 1
+        },
+        modules: {
+          bar: {
+            state: {
+              all: [
+                { id: 3, name: 'c' },
+                { id: 4, name: 'd' }
+              ],
+
+              selected: 4
+            }
+          }
+        }
+      })
+
+      const vm = new Vue({
+        store,
+        context: ({ mapState }) => ({
+          computed: mapState('foo/*/bar', ['selected'])
+        })
+      })
+
+      expect(vm.selected).to.equal(4)
+
+      // store.unregisterModule('foo')
     })
   })
 
