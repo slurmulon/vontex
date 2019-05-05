@@ -27,7 +27,7 @@ With traditional Vuex, you would likely establish the following module namespace
  - `shops/carts`
  - `shops/products/reviews`
 
-This means that `products, `carts, and `reviews` will all be fixed to the linear context of their parent modules.
+This means that `products`, `carts`, and `reviews` will all be fixed to the linear context of their parent modules.
 
 In other words, if you are trying to track which `shop` is selected by the user, and thus which `products` are available and selected within that `shop` and so on, you likely have a problem.
 
@@ -94,7 +94,18 @@ Service Workers can and should be used as a complementary solution to Vontex. I 
 
 ## Install
 
-`npm install slurmulon/vontex`
+```sh
+npm i slurmulon/vontex
+```
+
+When used with a module system, you must explicitly install Vontex via `Vue.use`:
+
+```js
+import Vue from 'vue'
+import Vontex from 'vontex'
+
+Vue.use(Vontex)
+```
 
 ## Roadmap
 
