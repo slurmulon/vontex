@@ -2,42 +2,39 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import ContextStore from '../../../lib/store'
-// import { mapState, mapActions, resolveNamespace } from '../../../lib/helpers'
+import ContextStore from '../../../lib/store'
 import { resolveNamespace } from '../../../lib/helpers'
 import { expect } from 'chai'
 
 Vue.use(Vuex)
 
 describe('helpers', () => {
-  // INPROG
-  // xdescribe('mapState', () => {
-  //   const store = new ContextStore({
-  //     namespace: 'foo',
-  //     state: {
-  //       all: [
-  //         { id: 1, name: 'a' },
-  //         { id: 2, name: 'b' }
-  //       ],
+  describe('mapState', () => {
+    const store = new ContextStore({
+      namespace: 'foo',
+      state: {
+        all: [
+          { id: 1, name: 'a' },
+          { id: 2, name: 'b' }
+        ],
 
-  //       selected: 1
-  //     }
-  //   })
+        selected: 1
+      }
+    })
 
-  //   const vm = new Vue({
-  //     store,
-  //     context ({ mapState }) {
-  //       return {
-  //         computed: mapState('foo', ['selected'])
-  //       }
-  //     }
-  //   })
+    const vm = new Vue({
+      store,
+      context ({ mapState }) {
+        return {
+          computed: mapState('foo', ['selected'])
+        }
+      }
+    })
 
-  //   it('still works as a native Vuex store', () => {
-  //     console.log('VM SELECTED', vm.selected)
-  //     expect(vm.selected).to.be(1)
-  //   })
-  // })
+    it('still works as a native Vuex store', () => {
+      expect(vm.selected).to.equal(1)
+    })
+  })
 
   describe('resolveNamespace', () => {
     const withSelected = {
