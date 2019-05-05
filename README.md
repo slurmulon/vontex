@@ -1,4 +1,8 @@
-# vucontex
+# vontex
+
+> :herb: Vuex + Contextual entity modules
+
+---
 
 ## Project setup
 ```
