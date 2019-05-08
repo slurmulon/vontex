@@ -1,3 +1,7 @@
+// TODO: Probably need to use the `beforeCreate` hook io order to ensure that computed properties
+//       are re-created in components whenever the selected entity changes.
+// TODO: Force components to use a :key property that is linked to the selected entitie(s)
+// @see: https://michaelnthiessen.com/force-re-render/ (find "Key-changing")
 // @see: https://github.com/vuejs/vuex/blob/dev/src/helpers.js
 
 import {
