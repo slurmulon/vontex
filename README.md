@@ -53,7 +53,7 @@ Applied to the example domain described in the following example, you might have
   </p>
   <ul>
     <li v-for="product in products">
-      {{ product.name }} - <a @click="purchase">Buy</a>
+      {{ product.name }} - <a @click="buy">Buy</a>
     </li>
   </ul>
 </template>
@@ -88,7 +88,7 @@ This gives you the best of both worlds, especially since you can use Vontex alon
 
 ### Alternatives
 
-Service Workers can solve many of these problems, but you will likely still have to write a bunch of management logic around the Cache interface that can be just as difficult to wrangle depending on your needs.
+Service Workers can help solve many of these problems, but you will likely still have to write a bunch of management logic around the Cache interface that can be just as difficult to wrangle depending on your needs.
 
 Service Workers can and should be used as a complementary solution to Vontex. I will write up a detailed guide on how these technologies can be combined in the future.
 
